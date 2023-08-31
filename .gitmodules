@@ -1,6 +1,3 @@
 [submodule "gateway"]
 	path = gateway
 	url = git@github.com:Ppojin/boilerplate_gatetay
-[submodule "authentication"]
-	path = authentication
-	url = git@github.com:Ppojin/boilerplate_authentication
