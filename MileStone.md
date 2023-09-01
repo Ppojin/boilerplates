@@ -1,0 +1,12 @@
+- [ ] auth
+  - [ ] 로그인 화면 통해 microservice 접근
+  - [x] oidc 연결 : keyclaok <-> gateway
+  - [ ] sso login
+  - [ ] tenancy 설정
+    - [x] tenancy token 생성 
+    - [ ] gateway
+    - [ ] application
+- [ ] observability 적용
+  - [ ] zipkin tracing
+  - [ ] EFK 로그 수집
+  - [ ] grafana dashboard
