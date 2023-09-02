@@ -1,6 +1,7 @@
 - [ ] auth
+  - [ ] keycloak cicd 구성 
   - [ ] 로그인 화면 통해 microservice 접근
-  - [x] oidc 연결 : keyclaok <-> gateway
+  - [x] oidc 연결 : keycloak <-> gateway
   - [ ] sso login
   - [ ] tenancy 설정
     - [x] tenancy token 생성 

@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+    - name: https
+      port: 8443
+      targetPort: 8443
+  selector:
+    app: keycloak
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-config
+data:
+  keycloak.conf: |
+    https-port=8443
+    hostname-port=8080
+    hostname-url=http://localhost:8080
+    hostname-admin-url=https://localhost:8443
+    proxy=none
+    db=postgres
+    db-driver=org.postgresql.xa.PGXADataSource
+    db-url=jdbc:postgresql://keycloak-postgres-svc.default.svc/keycloak
+    db-username=postgres
+    db-password=postgres
+    http-enabled=true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:22.0
+          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start"]
+#          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start", "--optimized"]
+          env:
+            - name: KEYCLOAK_ADMIN
+              value: "admin"
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: "admin"
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          readinessProbe:
+            httpGet:
+              path: /realms/master
+              port: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /conf/keycloak.conf
+      volumes:
+        - name: config-volume
+          configMap:
+            name: keycloak-config
+            items:
+              - key: keycloak.conf
+                path: keycloak.conf

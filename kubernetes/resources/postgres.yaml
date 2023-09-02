@@ -19,7 +19,7 @@ metadata:
   name: pg-entrypoint
 data:
   pg.sql: |
-    CREATE TABLE test ( id integer );
+    CREATE TABLAE test ( id integer );
 
 ---
 apiVersion: apps/v1
