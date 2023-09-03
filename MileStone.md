@@ -1,13 +1,16 @@
 - [ ] auth
-  - [ ] keycloak cicd 구성 
+  - [x] keycloak cicd 구성 
   - [ ] 로그인 화면 통해 microservice 접근
   - [x] oidc 연결 : keycloak <-> gateway
   - [ ] sso login
-  - [ ] tenancy 설정
+  - [x] tenancy 설정
     - [x] tenancy token 생성 
-    - [ ] gateway
+    - [x] gateway
     - [ ] application
 - [ ] observability 적용
   - [ ] zipkin tracing
   - [ ] EFK 로그 수집
   - [ ] grafana dashboard
+- [ ] TLS 적용
+  - [ ] 로컬에서 https://letsencrypt.org/ko/docs/certificates-for-localhost/
+  - [ ] 서버에서 https://certbot.eff.org/instructions?ws=other&os=ubuntufocal

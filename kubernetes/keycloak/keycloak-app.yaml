@@ -24,15 +24,15 @@ data:
   keycloak.conf: |
     https-port=8443
     hostname-port=8080
-    hostname-url=http://localhost:8080
-    hostname-admin-url=https://localhost:8443
+    hostname=localhost
+    hostname-admin=localhost
     proxy=none
     db=postgres
     db-driver=org.postgresql.xa.PGXADataSource
     db-url=jdbc:postgresql://keycloak-postgres-svc.default.svc/keycloak
     db-username=postgres
     db-password=postgres
-    http-enabled=true
+    http-enabled=false
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -53,7 +53,8 @@ spec:
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:22.0
-          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start"]
+          imagePullPolicy: IfNotPresent
+          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start-dev"]
 #          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start", "--optimized"]
           env:
             - name: KEYCLOAK_ADMIN
@@ -79,3 +80,4 @@ spec:
             items:
               - key: keycloak.conf
                 path: keycloak.conf
+
