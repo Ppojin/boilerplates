@@ -1,21 +1,38 @@
 # boilerplates
 
+## Getting started
+### pull image
 ```shell
 docker pull quay.io/keycloak/keycloak:22.0
 docker pull postgres:14.5
 ```
 
+### deploy service using local minikube
 ```shell
-minikube start --cpus='4' --memory='7951' \
-  --addons='metrics-server' \
-  --mount-string=$(pwd)/kubernetes/volume:/ppojin/volume \
-  --mount \
-  --ports "30080:30080,30443:30443,9090:9090,9443:9443"
-minikube image load quay.io/keycloak/keycloak:22.0
-minikube image load postgres:14.5
-
-minikube image load ppojin/gateway:latest
-
-kubectl apply -f ./kubernetes/apps/gateway.yaml
-kubectl apply -f ./kubernetes/keycloak
+./minikube-start.sh
+./build-gateway.sh
 ```
+
+## Milestone
+### auth
+- [ ] 
+- [ ] 로그인 화면 통해 microservice 접근
+- [x] oidc 연결 : keycloak <-> gateway
+- [ ] sso login
+- [x] tenancy 설정
+  - [x] tenancy token 생성 
+  - [x] gateway
+  - [ ] application
+
+### cicd
+- [ ] kubernetes 구성
+- [ ] ppojin keycloak initializer 구성
+
+### observability
+- [ ] zipkin tracing
+- [ ] EFK 로그 수집
+- [ ] grafana dashboard
+
+### tls
+- [ ] 로컬에서 https://letsencrypt.org/ko/docs/certificates-for-localhost/
+- [ ] 서버에서 https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
