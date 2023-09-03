@@ -1,5 +1,5 @@
 #!/bin/bash
-minikube delete
+
 minikube start --cpus='4' --memory='7951' \
   --ports=30080:30080,30443:30443,9090:9090,9443:9443 \
   --mount --mount-string=$(pwd)/kubernetes/volume:/ppojin/volume \
