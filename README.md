@@ -23,14 +23,14 @@ docker pull postgres:14.5
   - [x] gateway
   - [ ] application
 
-application
+### application
 - [ ] 간단 웹 페이지 구성
 - [ ] homepage
 - [ ] 로그인 성공 후 tenancy 화면
 
 ### cicd
-- [ ] kubernetes 구성
-- [ ] ppojin keycloak initializer 구성
+- [x] kubernetes 구성
+- [ ] keycloak initializer 구성
 
 ### observability
 - [ ] zipkin tracing
