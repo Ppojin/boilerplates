@@ -24,7 +24,7 @@ data:
   keycloak.conf: |
     https-port=8443
     hostname-port=8080
-    hostname=localhost
+    hostname=keycloak
     hostname-admin=localhost
     proxy=none
     db=postgres
@@ -50,12 +50,12 @@ spec:
       labels:
         app: keycloak
     spec:
+      hostname: keycloak
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:22.0
           imagePullPolicy: IfNotPresent
-          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start-dev"]
-#          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start", "--optimized"]
+          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start-dev", "--log-level=DEBUG"]
           env:
             - name: KEYCLOAK_ADMIN
               value: "admin"
@@ -73,6 +73,13 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /conf/keycloak.conf
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "1000m"
+            limits:
+              memory: "7000Mi"
+              cpu: "3500m"
       volumes:
         - name: config-volume
           configMap:

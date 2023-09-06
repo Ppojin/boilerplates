@@ -9,6 +9,9 @@ spec:
     - name: http
       port: 30080
       nodePort: 30080
+    - name: debug
+      port: 30050
+      nodePort: 30050
   selector:
     app: spring-gateway
   type: NodePort
@@ -40,6 +43,13 @@ spec:
             - name: SERVER_PORT
               value: "30080"
             - name: KEYCLOAK_URI
-              value: http://keycloak.default.svc:8080
+              value: http://keycloak:8080
             - name: HTTPBIN_URI
-              value: http://httpbin.default.svc:8888
+              value: http://httpbin-lb.default.svc:8088
+          resources:
+            # requests:
+            #   memory: "256Mi"
+            #   cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

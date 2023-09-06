@@ -7,6 +7,7 @@ minikube start --cpus='4' --memory='7951' \
   
 minikube image load quay.io/keycloak/keycloak:22.0
 minikube image load postgres:14.5
+minikube image load kennethreitz/httpbin
 
 minikube image load ppojin/gateway:latest
 

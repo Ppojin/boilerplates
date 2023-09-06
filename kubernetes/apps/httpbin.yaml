@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin-lb
+  labels:
+    app: httpbin-lb
+spec:
+  ports:
+    - name: http
+      port: 8088
+      targetPort: 80
+  selector:
+    app: httpbin
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin-np
+  labels:
+    app: httpbin-np
+spec:
+  ports:
+    - name: http
+      port: 80
+      nodePort: 30088
+  selector:
+    app: httpbin
+  type: NodePort
+---
+# docker run -d --name httpbin -p 8888:80 kennethreitz/httpbin
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  labels:
+    app: httpbin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+  template:
+    metadata:
+      labels:
+        app: httpbin
+    spec:
+      containers:
+        - name: java-app
+          image: kennethreitz/httpbin:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            # requests:
+            #   memory: "64Mi"
+            #   cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
