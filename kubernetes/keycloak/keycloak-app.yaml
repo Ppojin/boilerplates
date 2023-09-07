@@ -23,10 +23,11 @@ metadata:
 data:
   keycloak.conf: |
     https-port=8443
-    hostname-port=8080
-    hostname=keycloak
-    hostname-admin=localhost
-    proxy=none
+    hostname-port=30080
+    hostname=app.ppojin.localhost
+    hostname-admin-url=http://localhost:8080/
+    hostname-strict=false
+    proxy=edge
     db=postgres
     db-driver=org.postgresql.xa.PGXADataSource
     db-url=jdbc:postgresql://keycloak-postgres-svc.default.svc/keycloak
@@ -55,7 +56,7 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:22.0
           imagePullPolicy: IfNotPresent
-          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start-dev", "--log-level=DEBUG"]
+          args: ["--verbose", "--config-file=/conf/keycloak.conf", "start-dev", "--log-level=INFO"]
           env:
             - name: KEYCLOAK_ADMIN
               value: "admin"

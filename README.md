@@ -25,7 +25,7 @@ docker pull postgres:14.5
 
 ### application
 - [ ] 간단 웹 페이지 구성
-- [ ] homepage
+- [x] homepage
 - [ ] 로그인 성공 후 tenancy 화면
 
 ### cicd

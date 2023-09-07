@@ -42,6 +42,8 @@ spec:
           env:
             - name: SERVER_PORT
               value: "30080"
+            - name: HOSTNAME
+              value: http://app.ppojin.localhost:30080 # for jwt issuer
             - name: KEYCLOAK_URI
               value: http://keycloak:8080
             - name: HTTPBIN_URI
