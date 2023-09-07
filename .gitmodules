@@ -1,3 +1,6 @@
 [submodule "gateway"]
 	path = gateway
 	url = git@github.com:Ppojin/boilerplate_gatetay
+[submodule "indexpage"]
+	path = indexpage
+	url = git@github.com:Ppojin/boilerplate-homepage.git
