@@ -15,9 +15,10 @@ docker pull postgres:14.5
 
 ## Milestone
 ### auth
-- [ ] 로그인 화면 통해 microservice 접근
+- [ ] keycloak initialize 구성
+- [x] 로그인 화면 통해 로그인
 - [x] oidc 연결 : keycloak <-> gateway
-- [ ] sso login
+- [x] sso login (using keycloak)
 - [x] tenancy 설정
   - [x] tenancy token 생성 
   - [x] gateway

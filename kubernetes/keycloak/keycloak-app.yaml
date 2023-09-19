@@ -23,8 +23,6 @@ metadata:
 data:
   keycloak.conf: |
     https-port=8443
-    hostname-port=30080
-    hostname=app.ppojin.localhost
     hostname-admin-url=http://localhost:8080/
     hostname-strict=false
     proxy=edge
