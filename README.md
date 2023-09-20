@@ -1,5 +1,7 @@
 # boilerplates
 
+![](./static/boilerplateArchitecture.drawio.png)
+
 ## Getting started
 ### pull image
 ```shell
